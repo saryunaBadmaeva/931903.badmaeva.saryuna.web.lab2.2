@@ -1,0 +1,22 @@
+﻿@{ 
+    string action ="";
+
+    if (ViewContext.RouteData.Values["Action"] is string)
+        action = ViewContext.RouteData.Values["Action"] as string;
+
+    ViewBag.Title = action; }
+
+<h1>@action</h1>
+
+@using (Html.BeginForm(action, "Calc", FormMethod.Post))
+{
+    @Html.TextBox("a", "", new { type = "number" })
+    <br />
+    @Html.DropDownList("operation", new SelectList(new[] { "+", "-", "*", "/" }))
+    <br />
+    @Html.TextBox("b", "", new {type="number" })
+    <br />
+    <input type="submit" value="Submit" />
+
+
+}
